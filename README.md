@@ -19,7 +19,7 @@ git push -u origin master
 ```
 git pull origin master:master
 ```
-5. 分支操作
+# 分支操作
 + 创建并切换到分支
 ```
 git checkout -b yourbranchname
@@ -56,8 +56,16 @@ git status
 + 重新添加/提交
 + 合并即完成
 + 删除分支(可选)
-
-
-
-
-
+7. BUG分支
+```
+# assume current branch is cyrus, the bug is in master
+git stash
+git status # display clean
+git checkout master
+git checkout -b issue-001
+... # fix the bug
+git checkout master
+git merge -no-ff -m '...' issue-001
+git checkout cyrus
+git stash pop
+```
