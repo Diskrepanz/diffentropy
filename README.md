@@ -41,7 +41,7 @@ git merge yourbranchname
 ```
 + 删除分支
 ```
-git brach -d yourbranchname
+git branch -d yourbranchname
 ```
 
 
