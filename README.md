@@ -1,6 +1,6 @@
 # diffentropy
 
-# 操作步骤
+# 多人合作
 1. 克隆仓库到本地
 ```
 git clone https://github.com/cyruscyliu/diffentropy.git
