@@ -36,6 +36,10 @@ git checkout master
 ```
 git merge yourbranchname
 ```
++ 删除分支
+```
+git brach -d yourbranchname
+```
 
 
 
