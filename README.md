@@ -5,7 +5,7 @@
 ```
 git clone https://github.com/cyruscyliu/diffentropy.git
 ```
-2. 链接远程仓库
+2. 连接远程仓库
 ```
 git remote add origin git@github.com:cyruscyliu/diffentropy.git
 ```
