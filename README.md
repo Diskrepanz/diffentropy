@@ -44,6 +44,16 @@ git merge yourbranchname
 ```
 git branch -d yourbranchname
 ```
+6. 解决冲突
++ 合并冲突后查看冲突文件
+```
+git status
+```
++ 直接打开文件进行选择
++ 重新添加/提交
++ 合并即完成
++ 删除分支(可选)
+
 
 
 
