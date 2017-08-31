@@ -23,7 +23,8 @@ git pull origin master:master
 + 创建并切换到分支
 ```
 git checkout -b yourbranchname
-# hhh
+
+# 等价于以下两条命令
 git branch yourbranchname
 git checkout yourbranchname
 ```
