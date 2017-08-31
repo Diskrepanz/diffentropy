@@ -23,6 +23,9 @@ git pull origin master:master
 + 创建并切换到分支
 ```
 git checkout -b yourbranchname
+
+git branch yourbranchname
+git checkout yourbranchname
 ```
 + 查看分支
 ```
