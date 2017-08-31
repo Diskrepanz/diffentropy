@@ -19,3 +19,9 @@ git push -u origin master
 ```
 git pull origin master:master
 ```
+5. 创建分支
+```
+git checkout -b yourbranchname
+```
+
+
