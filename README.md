@@ -21,6 +21,8 @@ git checkout -b yourname
 ```
 git add *
 git commit -m 'description'
+git checkout develop
+git merge yourname
 git push -u origin develop
 ```
 6. 如发生冲突
