@@ -38,7 +38,10 @@ git checkout master
 ```
 + 合并新分支到master(必须先切换到master分支)
 ```
+# ff
 git merge yourbranchname
+# no-ff
+git merge --no-ff -m 'merge with no-ff' yourbranchname
 ```
 + 删除分支
 ```
