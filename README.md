@@ -28,6 +28,15 @@ git checkout -b yourbranchname
 ```
 git branch
 ```
++ 切换回master
+```
+git checkout master
+```
++ 合并新分支到master(必须先切换到master分支)
+```
+git merge yourbranchname
+```
+
 
 
 
