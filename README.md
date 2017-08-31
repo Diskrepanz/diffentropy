@@ -19,9 +19,15 @@ git push -u origin master
 ```
 git pull origin master:master
 ```
-5. 创建分支
+5. 分支操作
++ 创建并切换到分支
 ```
 git checkout -b yourbranchname
 ```
++ 查看分支
+```
+git branch
+```
+
 
 
