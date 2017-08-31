@@ -5,20 +5,36 @@
 ```
 git clone https://github.com/cyruscyliu/diffentropy.git
 ```
-2. 连接远程仓库
+2. 创建develop分支
 ```
-git remote add origin git@github.com:cyruscyliu/diffentropy.git
+git checkout -b develop origin/develop
 ```
-3. 提交修改
+3. 关联develop分支
+```
+git branch --set-upstream develop origin/develop
+```
+4. 在develop中创建自己的分支
+```
+git checkout -b yourname
+```
+5. 推送 
 ```
 git add *
 git commit -m 'description'
-git push -u origin master
+git push -u origin develop
 ```
-4. 拉取更新
+6. 如发生冲突
 ```
-git pull origin master:master
+git pull
 ```
+7. 在本地解决冲突
++ 查看冲突文件
+```
+git status
+```
++ 直接打开文件进行编辑
++ 重新添加/提交/推送
+
 # 分支操作
 + 创建并切换到分支
 ```
