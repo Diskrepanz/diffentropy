@@ -24,6 +24,7 @@ git pull origin master:master
 ```
 git checkout -b yourbranchname
 
+# 等价于以下两条命令
 git branch yourbranchname
 git checkout yourbranchname
 ```
