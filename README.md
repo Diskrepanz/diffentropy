@@ -1,9 +1,10 @@
 # diffentropy
 
-# 多人合作
+## 多人合作
 1. 克隆仓库到本地
 ```
 git clone https://github.com/cyruscyliu/diffentropy.git
+git remote -v
 ```
 2. 创建develop分支
 ```
@@ -37,7 +38,7 @@ git status
 + 直接打开文件进行编辑
 + 重新添加/提交/推送
 
-# 分支操作
+## 分支操作
 + 创建并切换到分支
 ```
 git checkout -b yourbranchname
@@ -58,7 +59,7 @@ git checkout master
 ```
 # ff
 git merge yourbranchname
-# no-ff
+# no-ff(recommend)
 git merge --no-ff -m 'merge with no-ff' yourbranchname
 ```
 + 删除分支
