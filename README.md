@@ -24,7 +24,10 @@ git add *
 git commit -m 'description'
 git checkout develop
 git merge yourname
+# push first time
 git push -u origin develop
+# push later
+git push origin develop
 ```
 6. 如发生冲突
 ```
