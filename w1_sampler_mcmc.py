@@ -28,7 +28,7 @@ def f(x):
 def MCMC_SD(size=100):
     """
     Assume X~U(0, 1) with only 1 dimension, then generate lots of that X,
-    if acceptable, add it to the result set until full.
+    if acceptable, add it to the result set, if not, add last X.
     """
 
     result = []
@@ -57,6 +57,7 @@ def MCMC_SD(size=100):
 if __name__ == '__main__':
     start = time.time()
 
+    # change size and params in plotSimpleKde
     size = 100000000
     f_esti = MCMC_SD(size=size)
 
@@ -65,6 +66,7 @@ if __name__ == '__main__':
 
     end = time.time()
 
+    # log
     with open('running.log', 'a') as f:
         log = {
             'comment': 'fixed bug 5',
