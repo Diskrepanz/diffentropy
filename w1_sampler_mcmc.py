@@ -62,33 +62,39 @@ def MCMC_SD(size=100):
 if __name__ == '__main__':
     start = time.time()
 
-    # change size and params in plotSimpleKde
-    size = 10000
+    # settings
+    size = 100
+    save_data = True
+    plot = False
+    log = False
+
     f_esti, reject_rate = MCMC_SD(size=size)
 
-    tools.plotSimpleKde(f_esti, x_lim=(0, 1), y_lim=(0, 5),
-                        title='size={0}'.format(size), save=True, show=False)
+    if plot:
+        tools.plotSimpleKde(f_esti, x_lim=(0, 1), y_lim=(0, 5),
+                            title='size={0}'.format(size), save=True, show=False)
 
     end = time.time()
 
     # save data
-    with open('data-{0}.txt'.format(size), 'w') as f:
-        data = '\n'.join([str(f_esti[i]) for i in range(0, len(f_esti))])
-        f.write(data)
-        f.close()
-
+    if save_data:
+        with open('data-{0}.txt'.format(size), 'w') as f:
+            data = '\n'.join([str(f_esti[i]) for i in range(0, len(f_esti))])
+            f.write(data)
+            f.close()
 
     # log
-    with open('running.log', 'a') as f:
-        log = {
-            'comment': 'final-sampler',
-            'function': 'sampler',
-            'dimension': '1',
-            'size': size,
-            'reject_rate': reject_rate,
-            'running_time': (end - start)
-        }
-        f.write(json.dumps(log))
-        f.write('\n')
-        f.flush()
-        f.close()
+    if log:
+        with open('running.log', 'a') as f:
+            log = {
+                'comment': 'final-sampler',
+                'function': 'sampler',
+                'dimension': '1',
+                'size': size,
+                'reject_rate': reject_rate,
+                'running_time': (end - start)
+            }
+            f.write(json.dumps(log))
+            f.write('\n')
+            f.flush()
+            f.close()
