@@ -35,31 +35,36 @@ def MCMC_SD(size=100):
 
     current = 0.5
 
+    reject = 0
+
     for i in range(0, size):
 
         next_ = np.random.rand()
         u = np.random.rand()
 
-        if f(next_) == float(0):
-            continue
-        # print u, min(f(next_) / f(current), 1)
+        if f(current) == float(0):
+            condition = 0
+        else:
+            condition = min(f(next_) / f(current), 1)
 
-        if u < min(f(next_) / f(current), 1):
+        if u < condition:
             # accept
             result.append(next_)
             current = next_
         else:
+            # refuse
             result.append(current)
+            reject += 1
 
-    return result
+    return result, reject / float(size)
 
 
 if __name__ == '__main__':
     start = time.time()
 
     # change size and params in plotSimpleKde
-    size = 100000000
-    f_esti = MCMC_SD(size=size)
+    size = 10000000
+    f_esti, reject_rate = MCMC_SD(size=size)
 
     tools.plotSimpleKde(f_esti, x_lim=(0, 1), y_lim=(0, 5),
                         title='size={0}'.format(size), save=True, show=False)
@@ -69,10 +74,11 @@ if __name__ == '__main__':
     # log
     with open('running.log', 'a') as f:
         log = {
-            'comment': 'fixed bug 5',
+            'comment': 'final-sampler',
             'function': 'sampler',
             'dimension': '1',
             'size': size,
+            'reject_rate': reject_rate,
             'running_time': (end - start)
         }
         f.write(json.dumps(log))
