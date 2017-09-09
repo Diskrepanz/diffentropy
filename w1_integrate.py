@@ -13,6 +13,12 @@ from sympy import integrate, symbols, log
 x = symbols('x')
 left = integrate(-16.0 * (x - 0.25) * log(16.0 * (x - 0.25)), (x, 0.25, 0.5))
 right = integrate(16.0 * (x - 0.75) * log(-16.0 * (x - 0.75)), (x, 0.5, 0.75))
-print 'left {0}'.format(left)
-print 'right {0}'.format(right)
-print 'all {0}'.format(left + right)
+
+with open('w1_integrate_result.txt', 'w') as f:
+    f.write('left:{0} bit\n'.format(left * 1.44))
+    f.flush()
+    f.write('right:{0} bit\n'.format(right * 1.44))
+    f.flush()
+    f.write('all:{0} bit\n'.format((left + right) * 1.44))
+    f.flush()
+    f.close()
