@@ -8,8 +8,7 @@ import json
 import time
 
 import numpy as np
-
-import tools
+from Python import tools
 
 
 def f(x):
@@ -63,10 +62,10 @@ if __name__ == '__main__':
     start = time.time()
 
     # settings
-    size = 100
+    size = 10000000
     save_data = True
     plot = False
-    log = False
+    log = True
 
     f_esti, reject_rate = MCMC_SD(size=size)
 

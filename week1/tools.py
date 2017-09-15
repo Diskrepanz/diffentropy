@@ -312,6 +312,8 @@ def plotSimplePlot(x,
                    xlegend=None,
                    ylegend=None,
                    xlabel=None,
+                   save=False,
+                   show=True,
                    ylabel=None):
     plt.plot(x, 'r*', label=xlegend)
     if title is not None:
@@ -323,7 +325,10 @@ def plotSimplePlot(x,
     if y is not None:
         plt.plot(y, 'bo', label=ylegend)
     plt.legend(loc='center right')
-    plt.show()
+    if save:
+        plt.savefig(title)
+    if show:
+        plt.show()
 
 
 def getSorted(l):
