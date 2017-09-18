@@ -403,3 +403,46 @@ def getCrossZeroIndices(table):
                 array_col.append(row.index(item))
             before = after
     return np.array(array_row), np.array(array_col)
+
+
+def validate_dist(p):
+    if np.imag(p).any() or np.isinf(p).any() or np.isnan(p).any() or (
+                p < 0).any() or (p > 1).any():
+        raise ValueError(
+            'The probability elements must be real numbers between 0 and 1.')
+
+    eps = np.finfo(np.double).eps
+    if (np.abs(p.sum(axis=0) - 1) > np.sqrt(eps)).any():
+        raise ValueError('Sum of the probability elements must equal 1.')
+
+
+def randsmpl(p, m, n):
+    validate_dist(p)
+
+    edges = np.r_[0, p.cumsum()]
+    eps = np.finfo(np.double).eps
+    # machine limit for floating point-types
+    if np.abs(edges[-1] - 1) > np.sqrt(eps):
+        edges = edges / edges[-1]
+    edges[-1] = 1 + eps
+
+    return np.digitize(np.random.rand(m, n), edges)
+
+
+def entropy_true(p):
+    """computes Shannon entropy H(p) in bits for the input discrete distribution.
+
+    This function returns a scalar entropy when the input distribution p is a
+    vector of probability masses, or returns in a row vector the columnwise
+    entropies of the input probability matrix p.
+    """
+    validate_dist(p)
+    # t1 =  -np.log2(p ** p)
+    # t2 = -np.log2(p[0] ** p[0])
+    # t = t1.sum(axis=0)
+    return -np.log2(p ** p).sum(axis=0)
+
+
+def getRootMeanSquaredError(x, true):
+        sx = np.power(x-true, 2)
+        return np.power(sx.sum()/float(len(x)), 0.5)

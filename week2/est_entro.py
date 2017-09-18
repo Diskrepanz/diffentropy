@@ -3,6 +3,7 @@ import scipy.io as sio
 
 poly_entro = None
 
+
 def est_entro_JVHW(samp):
     """Proposed JVHW estimate of Shannon entropy (in bits) of the input sample
 
@@ -28,8 +29,9 @@ def est_entro_JVHW(samp):
     global poly_entro
     if poly_entro is None:
         poly_entro = sio.loadmat('poly_coeff_entro.mat')['poly_entro']
-    coeff = poly_entro[order-1, 0][0]
+    coeff = poly_entro[order - 1, 0][0]
 
+    # fingerprint !!!
     f = fingerprint(samp)
 
     prob = np.arange(1, f.shape[0] + 1) / n
@@ -57,8 +59,9 @@ def est_entro_JVHW(samp):
 
     return np.sum(f * prob_mat, axis=0) / np.log(2)
 
+
 def entro_mat(x, n, g_coeff, c_1):
-    # g_coeff = {g0, g1, g2, ..., g_K}, K: the order of best polynomial approximation,
+
     K = len(g_coeff) - 1
     thres = 4 * c_1 * np.log(n) / n
     T, X = np.meshgrid(thres, x)
@@ -66,7 +69,9 @@ def entro_mat(x, n, g_coeff, c_1):
     q = np.arange(K).reshape((1, 1, K))
     g = g_coeff.reshape((1, 1, K + 1))
     MLE = - X * np.log(X) + 1 / (2 * n)
-    polyApp = np.sum(np.concatenate((T[..., None], ((n * X)[..., None]  - q) / (T[..., None] * (n - q))), axis=2).cumprod(axis=2) * g, axis=2) - X * np.log(T)
+    polyApp = np.sum(np.concatenate(
+        (T[..., None], ((n * X)[..., None] - q) / (T[..., None] * (n - q))),
+        axis=2).cumprod(axis=2) * g, axis=2) - X * np.log(T)
     polyfail = np.isnan(polyApp) | np.isinf(polyApp)
     polyApp[polyfail] = MLE[polyfail]
     output = ratio * MLE + (1 - ratio) * polyApp
@@ -102,11 +107,13 @@ def est_entro_MLE(samp):
 
 def formalize_sample(samp):
     samp = np.array(samp)
+
     if np.any(samp != np.fix(samp)):
         raise ValueError('Input sample must only contain integers.')
     if samp.ndim == 1 or samp.ndim == 2 and samp.shape[0] == 1:
         samp = samp.reshape((samp.size, 1))
     return samp
+
 
 def fingerprint(samp):
     """A memory-efficient algorithm for computing fingerprint when wid is
